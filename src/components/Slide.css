@@ -1,0 +1,12 @@
+.slide {
+  flex: 0 0 auto;
+  text-align: center;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.keepRatio {
+  background-size: contain;
+}

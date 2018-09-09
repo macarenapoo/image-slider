@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["es2015", "es2016", "es2017", "es5", "dom"],
+    "target": "es5",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "dist",
+    "allowSyntheticDefaultImports": false,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "strictNullChecks": true,
+    "jsx": "react",
+    "rootDir": "./src",
+    "types": ["webpack-env", "node"]
+  },
+  "include": ["./interfaces", "./src"],
+  "exclude": ["./node_modules", "./dist"]
+}

@@ -3,6 +3,9 @@ import * as cx from 'classnames';
 
 import * as styles from './Slider.css';
 import Slide from './Slide';
+import Icon from './Icon';
+
+const arrow = require('../images/arrow.svg');
 
 interface Props {
   images: string[];
@@ -55,10 +58,14 @@ class Slider extends React.Component<Props, OwnState> {
     return (
       <div className={styles.slider} style={sliderStyles}>
         <div className={prevClasses} onClick={this.previousSlide.bind(this)}>
-          Prev
+          <div className={styles.iconWrapper}>
+            <Icon icon={arrow} color={'rgba(255,255,255, 0.5)'} />
+          </div>
         </div>
         <div className={nextClasses} onClick={this.nextSlide.bind(this)}>
-          Next
+          <div className={styles.iconWrapper}>
+            <Icon icon={arrow} color={'rgba(255,255,255, 0.5)'} />
+          </div>
         </div>
         <div className={styles.slidesContainer} style={containerStyles}>
           {slides.map((slide: SlideType) => (

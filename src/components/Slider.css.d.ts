@@ -4,3 +4,4 @@ export const arrow: string;
 export const prev: string;
 export const next: string;
 export const disabled: string;
+export const iconWrapper: string;

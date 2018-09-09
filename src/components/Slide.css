@@ -4,9 +4,12 @@
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.fullWidth {
   background-size: cover;
 }
 
-.keepRatio {
+.fullHeight {
   background-size: contain;
 }

@@ -95,6 +95,9 @@ const config = {
     hotOnly: true,
     publicPath: '/',
     headers: { 'Access-Control-Allow-Origin': '*' }
+  },
+  node: {
+    fs: 'empty'
   }
 };
 

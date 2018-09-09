@@ -1,2 +1,3 @@
 export const slide: string;
-export const keepRatio: string;
+export const fullWidth: string;
+export const fullHeight: string;

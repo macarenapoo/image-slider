@@ -1,26 +1,45 @@
 import * as React from 'react';
+import * as cx from 'classnames';
 
 import * as styles from './Slide.css';
 
 interface Props {
-  image: string;
+  image: any;
   width: string;
   height: string;
   keepRatio: boolean;
 }
 
-const Slide = ({
-  image,
-  width = '100vw',
-  height = '500px',
-  keepRatio
-}: Props) => {
-  const slideStyles = {
-    backgroundImage: `url(${image})`,
-    height,
-    width
-  };
-  return <div className={styles.slide} style={slideStyles} />;
-};
+class Slide extends React.Component<Props, {}> {
+  constructor(props: Props) {
+    super(props);
+  }
+
+  public componentWillMount() {}
+
+  render() {
+    const { image, width, height, keepRatio } = this.props;
+    const slideStyles = {
+      backgroundImage: `url(${image})`,
+      height,
+      width
+    };
+    const slideClasses = cx({
+      [styles.slide]: true,
+      [styles.fullWidth]: !keepRatio,
+      [styles.fullHeight]: keepRatio
+    });
+    return <div className={slideClasses} style={slideStyles} />;
+  }
+
+  private getRatio() {
+    let img = new Image();
+    img.src = this.props.image;
+    img.onload = () => {
+      const { width, height } = img;
+      return 'fullWidth';
+    };
+  }
+}
 
 export default Slide;

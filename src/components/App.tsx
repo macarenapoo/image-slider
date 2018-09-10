@@ -17,7 +17,10 @@ const App = () => {
           <h1 className={styles.title}>Image Slider Examples</h1>
           <p className={styles.p}>Built with React and Typescript</p>
           <p className={styles.p}>
-            <a href="" target="_blank">
+            <a
+              href="https://github.com/macarenapoo/image-slider"
+              target="_blank"
+            >
               View Github Repo
             </a>
           </p>

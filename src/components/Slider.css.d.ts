@@ -6,3 +6,4 @@ export const next: string;
 export const disabled: string;
 export const iconWrapper: string;
 export const views: string;
+export const navigation: string;

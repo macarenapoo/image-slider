@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-color: white;
+  opacity: 0.5;
+  transition: transform 0.2s ease-out;
+  cursor: pointer;
+}
+
+.dot:hover {
+  transform: scale(1.3);
+}
+
+.active {
+  opacity: 1;
+}

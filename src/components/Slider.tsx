@@ -4,6 +4,7 @@ import * as cx from 'classnames';
 import * as styles from './Slider.css';
 import Slide from './Slide';
 import Icon from './Icon';
+import Navigation from './Navigation';
 
 const arrow = require('../images/arrow.svg');
 
@@ -12,6 +13,8 @@ interface Props {
   height?: string;
   width?: string;
   keepRatio?: boolean;
+  showViews?: boolean;
+  showNav?: boolean;
 }
 
 interface SlideType {
@@ -31,11 +34,20 @@ class Slider extends React.Component<Props, OwnState> {
       slides: this.getSlides(props.images),
       currentSlide: 0
     };
+  }
+
+  componentWillMount() {
     this.addSlideCount(0);
   }
 
   render() {
-    const { height = '500px', width = '100vw', keepRatio = false } = this.props;
+    const {
+      height = '500px',
+      width = '100vw',
+      keepRatio = false,
+      showNav = true,
+      showViews = true
+    } = this.props;
     const { slides, currentSlide } = this.state;
     const sliderStyles = {
       height,
@@ -62,27 +74,39 @@ class Slider extends React.Component<Props, OwnState> {
             <Icon icon={arrow} color={'rgba(255,255,255, 0.5)'} />
           </div>
         </div>
-        <div className={styles.views}>
-          <strong>
-            Views:
-            {'  '} {this.getCurrentViews()}
-          </strong>
-        </div>
+        {showViews ? (
+          <div className={styles.views}>
+            <strong>
+              Views:
+              {'  '} {this.getCurrentViews()}
+            </strong>
+          </div>
+        ) : null}
         <div className={nextClasses} onClick={this.nextSlide.bind(this)}>
           <div className={styles.iconWrapper}>
             <Icon icon={arrow} color={'rgba(255,255,255, 0.5)'} />
           </div>
         </div>
         <div className={styles.slidesContainer} style={containerStyles}>
-          {slides.map((slide: SlideType) => (
+          {slides.map((slide: SlideType, i: number) => (
             <Slide
               image={slide.image}
               width={width}
               height={height}
               keepRatio={keepRatio}
+              key={`slide_${i}`}
             />
           ))}
         </div>
+        {showNav ? (
+          <div className={styles.navigation}>
+            <Navigation
+              slideCount={slides.length}
+              currentSlide={currentSlide}
+              onClick={this.goToSlide.bind(this)}
+            />
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -130,12 +154,17 @@ class Slider extends React.Component<Props, OwnState> {
     this.setState({
       slides: newSlides
     });
-    console.log(this.state.slides);
   }
 
   private getCurrentViews() {
     const { slides, currentSlide } = this.state;
     return slides[currentSlide].shownCount;
+  }
+
+  private goToSlide(index: number) {
+    this.setState({
+      currentSlide: index
+    });
   }
 }
 

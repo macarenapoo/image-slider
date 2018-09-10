@@ -15,6 +15,8 @@ interface Props {
   keepRatio?: boolean;
   showViews?: boolean;
   showNav?: boolean;
+  background?: string;
+  alignImages?: 'top' | 'center' | 'bottom';
 }
 
 interface SlideType {
@@ -45,48 +47,24 @@ class Slider extends React.Component<Props, OwnState> {
       height = '500px',
       width = '100vw',
       keepRatio = false,
-      showNav = true,
-      showViews = true
+      background = 'rgba(44,44,44)',
+      alignImages = 'center'
     } = this.props;
-    const { slides, currentSlide } = this.state;
+    const { slides } = this.state;
     const sliderStyles = {
       height,
       width
     };
     const containerStyles = {
-      marginLeft: this.getOffset()
+      marginLeft: this.getOffset(),
+      backgroundColor: background
     };
-    const prevClasses = cx({
-      [styles.arrow]: true,
-      [styles.prev]: true,
-      [styles.disabled]: currentSlide === 0
-    });
-    const nextClasses = cx({
-      [styles.arrow]: true,
-      [styles.next]: true,
-      [styles.disabled]: currentSlide === slides.length - 1
-    });
 
     return (
       <div className={styles.slider} style={sliderStyles}>
-        <div className={prevClasses} onClick={this.previousSlide.bind(this)}>
-          <div className={styles.iconWrapper}>
-            <Icon icon={arrow} color={'rgba(255,255,255, 0.5)'} />
-          </div>
-        </div>
-        {showViews ? (
-          <div className={styles.views}>
-            <strong>
-              Views:
-              {'  '} {this.getCurrentViews()}
-            </strong>
-          </div>
-        ) : null}
-        <div className={nextClasses} onClick={this.nextSlide.bind(this)}>
-          <div className={styles.iconWrapper}>
-            <Icon icon={arrow} color={'rgba(255,255,255, 0.5)'} />
-          </div>
-        </div>
+        {this.getArrows()}
+        {this.getViews()}
+        {this.getNav()}
         <div className={styles.slidesContainer} style={containerStyles}>
           {slides.map((slide: SlideType, i: number) => (
             <Slide
@@ -95,18 +73,10 @@ class Slider extends React.Component<Props, OwnState> {
               height={height}
               keepRatio={keepRatio}
               key={`slide_${i}`}
+              alignImages={alignImages}
             />
           ))}
         </div>
-        {showNav ? (
-          <div className={styles.navigation}>
-            <Navigation
-              slideCount={slides.length}
-              currentSlide={currentSlide}
-              onClick={this.goToSlide.bind(this)}
-            />
-          </div>
-        ) : null}
       </div>
     );
   }
@@ -119,6 +89,68 @@ class Slider extends React.Component<Props, OwnState> {
       };
     });
     return slides;
+  }
+
+  private getArrows() {
+    const { currentSlide, slides } = this.state;
+    const prevClasses = cx({
+      [styles.arrow]: true,
+      [styles.prev]: true,
+      [styles.disabled]: currentSlide === 0
+    });
+    const nextClasses = cx({
+      [styles.arrow]: true,
+      [styles.next]: true,
+      [styles.disabled]: currentSlide === slides.length - 1
+    });
+
+    return (
+      <div className={styles.arrowsContainer}>
+        <div className={prevClasses} onClick={this.previousSlide.bind(this)}>
+          <div className={styles.iconWrapper}>
+            <Icon icon={arrow} color={'rgba(255,255,255, 0.5)'} />
+          </div>
+        </div>
+        <div className={nextClasses} onClick={this.nextSlide.bind(this)}>
+          <div className={styles.iconWrapper}>
+            <Icon icon={arrow} color={'rgba(255,255,255, 0.5)'} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  private getViews() {
+    const { showViews = true } = this.props;
+    if (showViews) {
+      return (
+        <div className={styles.views}>
+          <strong>
+            Views:
+            {'  '} {this.getCurrentViews()}
+          </strong>
+        </div>
+      );
+    }
+    return;
+  }
+
+  private getNav() {
+    const { showNav = true } = this.props;
+    const { slides, currentSlide } = this.state;
+
+    if (showNav) {
+      return (
+        <div className={styles.navigation}>
+          <Navigation
+            slideCount={slides.length}
+            currentSlide={currentSlide}
+            onClick={this.goToSlide.bind(this)}
+          />
+        </div>
+      );
+    }
+    return;
   }
 
   private getOffset() {

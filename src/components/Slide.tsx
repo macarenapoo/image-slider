@@ -8,6 +8,7 @@ interface Props {
   width: string;
   height: string;
   keepRatio: boolean;
+  alignImages: 'top' | 'center' | 'bottom';
 }
 
 class Slide extends React.Component<Props, {}> {
@@ -18,11 +19,12 @@ class Slide extends React.Component<Props, {}> {
   public componentWillMount() {}
 
   render() {
-    const { image, width, height, keepRatio } = this.props;
+    const { image, width, height, keepRatio, alignImages } = this.props;
     const slideStyles = {
       backgroundImage: `url(${image})`,
       height,
-      width
+      width,
+      backgroundPosition: alignImages
     };
     const slideClasses = cx({
       [styles.slide]: true,

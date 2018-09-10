@@ -12,7 +12,65 @@ const images = [
 const App = () => {
   return (
     <div className={styles.container}>
-      <Slider images={images} />
+      <div className={styles.section}>
+        <div className={styles.centerText}>
+          <h1 className={styles.title}>Image Slider Examples</h1>
+          <p className={styles.p}>Built with React and Typescript</p>
+          <p className={styles.p}>
+            <a href="" target="_blank">
+              View Github Repo
+            </a>
+          </p>
+        </div>
+        <div className={styles.text}>
+          <h3 className={styles.subtitle}>Default:</h3>
+        </div>
+        <Slider images={images} />
+        <div className={styles.text}>
+          <div className={styles.code}>{`<Slider images={images} />`}</div>
+        </div>
+      </div>
+      <div className={styles.section}>
+        <div className={styles.text}>
+          <h3 className={styles.subtitle}>Aspect Ratio:</h3>
+        </div>
+        <Slider images={images} showViews={false} keepRatio={true} />
+        <div className={styles.text}>
+          <div className={styles.code}>
+            {`<Slider images={images} showViews={false} keepRatio={true} />`}
+          </div>
+        </div>
+      </div>
+      <div className={styles.section}>
+        <div className={styles.text}>
+          <h3 className={styles.subtitle}>Custom Size:</h3>
+        </div>
+        <div className={styles.alignCenter}>
+          <Slider
+            width={'400px'}
+            height={'400px'}
+            images={images}
+            showNav={false}
+            alignImages={'top'}
+          />
+        </div>
+        <div className={styles.text}>
+          <div className={styles.code}>
+            {`<Slider
+  width={'500px'}
+  height={'500px'}
+  images={images}
+  showNav={false}
+  alignImages={'top'}
+/>`}
+          </div>
+        </div>
+        <div className={styles.centerText}>
+          <a href="http://macarenapoo.com" target="_blank">
+            macarenapoo.com
+          </a>
+        </div>
+      </div>
     </div>
   );
 };

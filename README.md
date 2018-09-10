@@ -4,6 +4,10 @@ Image slider using React and Typescript.
 
 The slider is fully responsive (please note that if you specify a width and a height these will be fixed), and it keeps track of the number of times each image has been viewed.
 
+### Demo
+
+<a href="https://maca-image-slider.herokuapp.com/" target="_blank">View demo and examples.</a>
+
 ### Properties
 
 | Property    | Type                    | Required | Default         | Description                                                                                           |
@@ -16,10 +20,6 @@ The slider is fully responsive (please note that if you specify a width and a he
 | showNav     | `boolean`               | false    | `true`          | Displays navigation for the slider.                                                                   |
 | background  | `string`                | false    | `rgb(44,44,44)` | Background color of the slider (for when aspect ratio is on).                                         |
 | alignImages | `top | center | bottom` | false    | `center`        | When aspect ratio is off, images will sometimes crop. This propperty indicates where to align images. |
-
-### Demo
-
-<a href="https://maca-image-slider.herkouapp.com" target="_blank">View demo and examples.</a>
 
 ### Example and Usage
 

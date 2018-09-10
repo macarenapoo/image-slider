@@ -15,7 +15,6 @@ interface Props {
 }
 
 interface SlideType {
-  id: number;
   image: string;
   shownCount: number;
 }
@@ -32,6 +31,7 @@ class Slider extends React.Component<Props, OwnState> {
       slides: this.getSlides(props.images),
       currentSlide: 0
     };
+    this.addSlideCount(0);
   }
 
   render() {
@@ -62,6 +62,12 @@ class Slider extends React.Component<Props, OwnState> {
             <Icon icon={arrow} color={'rgba(255,255,255, 0.5)'} />
           </div>
         </div>
+        <div className={styles.views}>
+          <strong>
+            Views:
+            {'  '} {this.getCurrentViews()}
+          </strong>
+        </div>
         <div className={nextClasses} onClick={this.nextSlide.bind(this)}>
           <div className={styles.iconWrapper}>
             <Icon icon={arrow} color={'rgba(255,255,255, 0.5)'} />
@@ -82,9 +88,8 @@ class Slider extends React.Component<Props, OwnState> {
   }
 
   private getSlides(images: string[]): SlideType[] {
-    const slides = images.map((image, index) => {
+    const slides = images.map(image => {
       return {
-        id: index,
         image,
         shownCount: 0
       };
@@ -104,15 +109,33 @@ class Slider extends React.Component<Props, OwnState> {
   }
 
   private nextSlide() {
+    const index = this.state.currentSlide + 1;
     this.setState({
-      currentSlide: this.state.currentSlide + 1
+      currentSlide: index
     });
+    this.addSlideCount(index);
   }
 
   private previousSlide() {
+    const index = this.state.currentSlide - 1;
     this.setState({
-      currentSlide: this.state.currentSlide - 1
+      currentSlide: index
     });
+    this.addSlideCount(index);
+  }
+
+  private addSlideCount(index: number) {
+    const newSlides = this.state.slides;
+    newSlides[index].shownCount = newSlides[index].shownCount + 1;
+    this.setState({
+      slides: newSlides
+    });
+    console.log(this.state.slides);
+  }
+
+  private getCurrentViews() {
+    const { slides, currentSlide } = this.state;
+    return slides[currentSlide].shownCount;
   }
 }
 

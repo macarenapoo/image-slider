@@ -57,3 +57,13 @@
 .next .iconWrapper {
   transform: rotate(-90deg);
 }
+
+.views {
+  color: white;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+}

@@ -19,7 +19,7 @@ The slider is fully responsive (please note that if you specify a width and a he
 
 ### Demo
 
-<a href="http://maca-image-slider.herkouapp.com" target="_blank">View demo and examples.</a>
+<a href="https://maca-image-slider.herkouapp.com" target="_blank">View demo and examples.</a>
 
 ### Example and Usage
 

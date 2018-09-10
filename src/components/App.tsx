@@ -60,8 +60,8 @@ const App = () => {
         <div className={styles.text}>
           <div className={styles.code}>
             {`<Slider
-  width={'500px'}
-  height={'500px'}
+  width={'400px'}
+  height={'400px'}
   images={images}
   showNav={false}
   alignImages={'top'}

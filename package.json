@@ -35,8 +35,6 @@
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "react-hot-loader": "4.3.4",
-    "react-redux": "5.0.7",
-    "redux": "4.0.0",
     "style-loader": "0.22.1",
     "svg-inline-loader": "0.8.0",
     "ts-loader": "4.4.2",
